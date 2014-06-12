@@ -1,0 +1,24 @@
+{
+  "name": "bz-commando",
+  "bin": { "bz" : "./bz.js" },
+  "version": "0.0.1",
+  "description": "A command line interface to Bugzilla.",
+  "main": "bz.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gvn/bz-commando.git"
+  },
+  "author": "@gvn",
+  "preferGlobal": true,
+  "license": "MPL",
+  "bugs": {
+    "url": "https://github.com/gvn/bz-commando/issues"
+  },
+  "homepage": "https://github.com/gvn/bz-commando",
+  "dependencies": {
+    "commander": "~2.2.0",
+    "openurl": "~1.1.0",
+    "git-rev": "~0.2.1",
+    "cson": "~1.6.0"
+  }
+}
