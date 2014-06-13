@@ -8,7 +8,7 @@ A Node based CLI for using Bugzilla.
 
 1. Install [Node.js](http://nodejs.org) if you don't already have it.
 2. Run `npm install -g bz-commando`. You may have to preface this with `sudo` depending on your permissions.
-3. Add a `.bzrc` to your home directory. This is a config file used by the tool. You can copy and edit the provided `.bzrc.sample` to start. The sample is geared toward working on the [Webmaker](http://webmaker.org) product and associated components, but it can be altered to whatever you like.
+3. Add a `.bzrc` to your home directory. This is a config file used by the tool. You can copy and edit the provided `.bzrc.sample` to start. The sample is geared toward working on the [Webmaker](http://webmaker.org) product and associated components, but it can be altered to whatever you like. The format is [CSON](https://github.com/bevry/cson).
 
 ## Help
 
