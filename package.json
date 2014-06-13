@@ -9,6 +9,7 @@
     "url": "https://github.com/gvn/bz-commando.git"
   },
   "author": "@gvn",
+  "contributors": ["Kate Hudson"],
   "preferGlobal": true,
   "license": "MPL",
   "bugs": {
@@ -20,5 +21,7 @@
     "openurl": "~1.1.0",
     "git-rev": "~0.2.1",
     "cson": "~1.6.0"
-  }
+  },
+  "keywords": ["bugzilla", "cli"],
+  "engines" : { "node" : ">=0.10.22" }
 }
