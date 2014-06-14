@@ -19,6 +19,10 @@ if (configFilePath) {
   }));
 }
 
+function openURL(url) {
+  openurl.open(url);
+}
+
 program
   .version('0.0.1');
 
@@ -29,7 +33,7 @@ program
     // Try to open a number encoded as a string
     function tryToOpen(number) {
       if (!isNaN(number, 10)) {
-        openurl.open(baseURL + '/show_bug.cgi?id=' + number);
+        openURL(baseURL + '/show_bug.cgi?id=' + number);
       } else {
         console.error('Branch name "' + number + '" isn\'t a number.');
         process.exit(1);
@@ -49,7 +53,7 @@ program
   .command('dash')
   .description('Open Bugzilla dashboard.')
   .action(function () {
-    openurl.open(baseURL + '/page.cgi?id=mydashboard.html');
+    openURL(baseURL + '/page.cgi?id=mydashboard.html');
   });
 
 program
@@ -57,6 +61,7 @@ program
   .option('-m, --me', 'Assign to yourself.')
   .option('-t, --title <title>', 'Set ticket title of <title>.')
   .option('-c, --component <shortname>', 'Set ticket component to <shortname>.')
+  .option('-w, --whiteboard <whiteboard>', 'Set whiteboard(s) to <whiteboard>')
   .description('Create new ticket.')
   .action(function (command) {
     var URL = baseURL + '/enter_bug.cgi';
@@ -65,28 +70,37 @@ program
       URL += '?product=' + config.product;
     } else {
       console.error('Product value is missing from config.');
-      process.exit(4);
+      process.exit(1);
     }
 
-    if (command.component && config.components[command.component]) {
-      URL += '&component=' + encodeURIComponent(config.components[command.component]);
-    } else {
-      console.error('Component value is undefined.');
-      process.exit(3);
+    if (command.component) {
+      if (config.components[command.component]) {
+        URL += '&component=' + encodeURIComponent(config.components[command.component]);
+      } else {
+        console.error('Component value for "' + command.component + '" key is not defined.');
+        process.exit(1);
+      }
     }
 
-    if (command.me && config.email) {
-      URL += '&assigned_to=' + config.email;
-    } else {
-      console.error('Missing email in config.');
-      process.exit(2);
+    if (command.me) {
+      if (config.email) {
+        URL += '&assigned_to=' + config.email;
+      } else {
+        console.error('Missing email in config.');
+        process.exit(1);
+      }
     }
 
     if (command.title) {
       URL += '&short_desc=' + encodeURIComponent(command.title);
     }
 
-    openurl.open(URL);
+    // TODO : Verify URL syntax for whiteboards
+    if (command.whiteboard) {
+      URL += '&whiteboard=' + encodeURIComponent(command.whiteboard);
+    }
+
+    openURL(URL);
   });
 
 program.parse(process.argv);
