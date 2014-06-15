@@ -24,11 +24,11 @@ function openURL(url) {
 }
 
 program
-  .version('0.0.1');
+  .version('0.1.0');
 
 program
   .command('open [ticket]')
-  .description('Open ticket by ID number or branch name.')
+  .description('Open ticket by ID number or branch name')
   .action(function (ticket) {
     // Try to open a number encoded as a string
     function tryToOpen(number) {
@@ -58,10 +58,10 @@ program
 
 program
   .command('new')
-  .option('-m, --me', 'Assign to yourself.')
-  .option('-t, --title <title>', 'Set ticket title of <title>.')
-  .option('-c, --component <shortname>', 'Set ticket component to <shortname>.')
-  .option('-w, --whiteboard <whiteboard>', 'Set whiteboard(s) to <whiteboard>')
+  .option('-m, --me', 'Assign to yourself')
+  .option('-t, --title <title>', 'Set ticket title of <title>')
+  .option('-c, --component <shortname>', 'Set ticket component to <shortname>')
+  .option('-w, --whiteboard <whiteboard>', 'Set ticket whiteboard(s) to <whiteboard>')
   .description('Create new ticket.')
   .action(function (command) {
     var URL = baseURL + '/enter_bug.cgi';
@@ -95,9 +95,8 @@ program
       URL += '&short_desc=' + encodeURIComponent(command.title);
     }
 
-    // TODO : Verify URL syntax for whiteboards
     if (command.whiteboard) {
-      URL += '&whiteboard=' + encodeURIComponent(command.whiteboard);
+      URL += '&status_whiteboard=' + encodeURIComponent(command.whiteboard);
     }
 
     openURL(URL);

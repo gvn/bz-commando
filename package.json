@@ -1,7 +1,7 @@
 {
   "name": "bz-commando",
   "bin": { "bz" : "./bz.js" },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A command line interface to Bugzilla.",
   "main": "bz.js",
   "repository": {
